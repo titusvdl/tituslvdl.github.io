@@ -1,4 +1,3 @@
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,7 +8,7 @@
     <h1 id="welcome-message"></h1>
 
     <script>
-        document.getElementById('welcome-message').textContent = 'Hi, md!';
+        document.getElementById('welcome-message').textContent = 'Welcome!';
     </script>
 </body>
 </html>
