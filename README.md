@@ -1,5 +1,4 @@
-# tituslvdl.github.io
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,7 +9,7 @@
     <h1 id="welcome-message"></h1>
 
     <script>
-        document.getElementById('welcome-message').textContent = 'Hi, welcome to the website!';
+        document.getElementById('welcome-message').textContent = 'Hi, md!';
     </script>
 </body>
 </html>
