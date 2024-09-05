@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Psychedelic Website</title>
+  <title>My Psychedelic Website with Games</title>
   <style>
     /* General styling for the body */
     body {
@@ -15,6 +15,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-direction: column;
       height: 100vh;
     }
 
@@ -65,6 +66,7 @@
     .content {
       text-align: center;
       z-index: 1; /* Ensure content is on top of the background */
+      padding: 20px;
     }
 
     h1 {
@@ -78,6 +80,23 @@
       max-width: 800px;
       margin: 0 auto;
     }
+
+    /* Button styles for the games */
+    .game-link {
+      display: inline-block;
+      margin: 15px;
+      padding: 10px 20px;
+      font-size: 1.5em;
+      color: #fff;
+      background-color: #007bff;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .game-link:hover {
+      background-color: #0056b3;
+    }
   </style>
 </head>
 <body>
@@ -88,10 +107,14 @@
     <div class="wave"></div>
   </div>
 
-  <!-- Your README content or any other content -->
+  <!-- Your content -->
   <div class="content">
     <h1>Welcome to My Psychedelic Website</h1>
-    <p>This website is inspired by the psychedelic vibes of King Gizzard & the Lizard Wizard. Sit back and enjoy the visuals!</p>
+    <p>This website is inspired by the psychedelic vibes of King Gizzard & the Lizard Wizard. Enjoy the games below!</p>
+
+    <!-- Links to the games -->
+    <a href="game.html" class="game-link">Play Click the Circle Game</a>
+    <a href="guess.html" class="game-link">Play Guess the Number Game</a>
   </div>
 </body>
 </html>
