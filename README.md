@@ -14,7 +14,7 @@
 </html>
 
 <div>
-  <p>Check out this simple game:</p>
+  <p>Check out this VERY hard game:</p>
   <a href="game.html" style="font-size: 18px; color: #007bff; text-decoration: none;">
     Play the Game!
   </a>
