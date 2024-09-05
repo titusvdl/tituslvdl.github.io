@@ -26,3 +26,10 @@
     Play the "Guess the Number" Game!
   </a>
 </div>
+
+<div>
+  <p>Check out this cool visual:</p>
+  <a href="visual.html" style="font-size: 18px; color: #007bff; text-decoration: none;">
+    View Psychedelic Visual!
+  </a>
+</div>
