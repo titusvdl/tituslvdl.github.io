@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Psychedelic Website with Games</title>
+  <title>Intense Psychedelic Website with Games</title>
   <style>
     /* General styling for the body */
     body {
@@ -19,7 +19,7 @@
       height: 100vh;
     }
 
-    /* Create the moving background */
+    /* Intensified moving background */
     .wave-container {
       position: absolute;
       top: 0;
@@ -28,7 +28,7 @@
       height: 100vh;
       overflow: hidden;
       z-index: -1;
-      background: radial-gradient(circle, #1a1a1a, #000);
+      background: radial-gradient(circle, #000, #000);
     }
     .wave {
       position: absolute;
@@ -36,17 +36,21 @@
       height: 400%;
       top: 50%;
       left: 50%;
-      background: rgba(255, 0, 255, 0.2);
-      border-radius: 45%;
-      animation: wave 15s ease-in-out infinite;
+      border-radius: 50%;
+      animation: wave 7s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      mix-blend-mode: screen;
+    }
+    .wave:nth-child(1) {
+      background: rgba(255, 0, 0, 0.5); /* Intense red */
+      animation: wave 9s ease-in-out infinite;
     }
     .wave:nth-child(2) {
-      background: rgba(0, 255, 255, 0.2);
-      animation: wave 10s ease-in-out infinite;
+      background: rgba(0, 255, 0, 0.5); /* Intense green */
+      animation: wave 6s ease-in-out infinite;
     }
     .wave:nth-child(3) {
-      background: rgba(255, 255, 0, 0.2);
-      animation: wave 20s ease-in-out infinite;
+      background: rgba(0, 0, 255, 0.5); /* Intense blue */
+      animation: wave 12s ease-in-out infinite;
     }
 
     /* Animation for the waves */
@@ -55,7 +59,7 @@
         transform: translate(-50%, -50%) scale(1);
       }
       50% {
-        transform: translate(-50%, -50%) scale(1.1);
+        transform: translate(-50%, -50%) scale(1.5);
       }
       100% {
         transform: translate(-50%, -50%) scale(1);
@@ -72,6 +76,7 @@
     h1 {
       font-size: 3em;
       margin-bottom: 20px;
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
     }
 
     p {
@@ -79,6 +84,7 @@
       line-height: 1.5em;
       max-width: 800px;
       margin: 0 auto;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
     }
 
     /* Button styles for the games */
@@ -88,19 +94,20 @@
       padding: 10px 20px;
       font-size: 1.5em;
       color: #fff;
-      background-color: #007bff;
+      background-color: #ff0055;
       text-decoration: none;
       border-radius: 5px;
-      transition: background-color 0.3s ease;
+      transition: background-color 0.3s ease, transform 0.3s ease;
     }
 
     .game-link:hover {
-      background-color: #0056b3;
+      background-color: #ff66cc;
+      transform: scale(1.1);
     }
   </style>
 </head>
 <body>
-  <!-- Moving background visual -->
+  <!-- More intense moving background visual -->
   <div class="wave-container">
     <div class="wave"></div>
     <div class="wave"></div>
@@ -110,7 +117,7 @@
   <!-- Your content -->
   <div class="content">
     <h1>Welcome to My Psychedelic Website</h1>
-    <p>This website is inspired by the psychedelic vibes of King Gizzard & the Lizard Wizard. Enjoy the games below!</p>
+    <p>This website is inspired by the psychedelic vibes of King Gizzard & the Lizard Wizard. Enjoy the intense visuals and games below!</p>
 
     <!-- Links to the games -->
     <a href="game.html" class="game-link">Play Click the Circle Game</a>
@@ -118,3 +125,4 @@
   </div>
 </body>
 </html>
+
