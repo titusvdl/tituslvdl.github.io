@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Intense Psychedelic Website with Games</title>
+  <title>Psychedelic Website with Flying Crocodiles and Games</title>
   <style>
     /* General styling for the body */
     body {
@@ -51,6 +51,41 @@
     .wave:nth-child(3) {
       background: rgba(0, 0, 255, 0.5); /* Intense blue */
       animation: wave 12s ease-in-out infinite;
+    }
+
+    /* Flying Crocodile Animations */
+    .crocodile {
+      position: absolute;
+      width: 100px;
+      height: 50px;
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/4/4a/Crocodile_cartoon.png');
+      background-size: cover;
+      animation: fly 10s linear infinite;
+    }
+
+    /* Keyframes for crocodile flying animations */
+    @keyframes fly {
+      0% {
+        transform: translate(-100vw, -100vh) rotate(0deg);
+      }
+      100% {
+        transform: translate(100vw, 100vh) rotate(360deg);
+      }
+    }
+
+    .crocodile:nth-child(1) {
+      animation-duration: 8s;
+      animation-delay: 0s;
+    }
+
+    .crocodile:nth-child(2) {
+      animation-duration: 12s;
+      animation-delay: 3s;
+    }
+
+    .crocodile:nth-child(3) {
+      animation-duration: 14s;
+      animation-delay: 5s;
     }
 
     /* Animation for the waves */
@@ -114,10 +149,15 @@
     <div class="wave"></div>
   </div>
 
+  <!-- Flying crocodiles -->
+  <div class="crocodile" style="top: 20%; left: -10%;"></div>
+  <div class="crocodile" style="top: 40%; left: -20%;"></div>
+  <div class="crocodile" style="top: 60%; left: -30%;"></div>
+
   <!-- Your content -->
   <div class="content">
     <h1>Welcome to My Psychedelic Website</h1>
-    <p>This website is inspired by the psychedelic vibes of King Gizzard & the Lizard Wizard. Enjoy the intense visuals and games below!</p>
+    <p>This website is inspired by the psychedelic vibes of King Gizzard & the Lizard Wizard. Enjoy the intense visuals, flying crocodiles, and games below!</p>
 
     <!-- Links to the games -->
     <a href="game.html" class="game-link">Play Click the Circle Game</a>
@@ -125,4 +165,3 @@
   </div>
 </body>
 </html>
-
