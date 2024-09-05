@@ -19,3 +19,10 @@
     Play the Game!
   </a>
 </div>
+
+<div>
+  <p>Try another game:</p>
+  <a href="guess.html" style="font-size: 18px; color: #007bff; text-decoration: none;">
+    Play the "Guess the Number" Game!
+  </a>
+</div>
