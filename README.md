@@ -1,5 +1,16 @@
 # tituslvdl.github.io
-def welcome():
-    return "Hi, welcome to the website!"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+</head>
+<body>
+    <h1 id="welcome-message"></h1>
 
-if __name__ == '__main__':
+    <script>
+        document.getElementById('welcome-message').textContent = 'Hi, welcome to the website!';
+    </script>
+</body>
+</html>
