@@ -3,35 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homework 0</title>
+    <title>Python Exercises Showcase</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        pre {
+            line-height: 1.6;
             background-color: #f4f4f4;
-            padding: 15px;
+            margin: 0;
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .exercise {
+            background-color: #fff;
             border: 1px solid #ddd;
-            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
         }
         code {
-            color: #d63384;
+            display: block;
+            background-color: #f9f9f9;
+            border-left: 5px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .output {
+            background-color: #e6ffe6;
+            padding: 10px;
+            border: 1px solid #d4d4d4;
+            border-radius: 5px;
+            margin: 10px 0;
         }
     </style>
 </head>
 <body>
-    <h1>Question 1</h1>
-    <pre><code>
-def create_dict(n: int) -> dict:
-    d = {}
-    for i in range(n):
-        if i % 2 == 0:
-            d[i] = "even"
-        else:
-            d[i] = "odd"
-    return d
-    </code></pre>
+
+    <h1>Python Exercises Showcase</h1>
+
+    <!-- Exercise 1 -->
+    <div class="exercise">
+        <h2>Exercise 1: Create Odd-Even Dictionary</h2>
+        <p>This exercise creates a dictionary where numbers from 0 to 99 are labeled as either "odd" or "even".</p>
+        <code>
+            def create_odd_even_dict():<br>
+                &emsp;result_dict = {}<br>
+                &emsp;for i in range(0, 100):<br>
+                &emsp;&emsp;if i % 2 == 0:<br>
+                &emsp;&emsp;&emsp;result_dict[i] = 'even'<br>
+                &emsp;&emsp;else:<br>
+                &emsp;&emsp;&emsp;result_dict[i] = 'odd'<br>
+                &emsp;return result_dict<br>
+            result = create_odd_even_dict()<br>
+            print(result)
+        </code>
+        <div class="output">
+            <strong>Output:</strong>
+            <!-- Output for Exercise 1 would be displayed here -->
+        </div>
+    </div>
+
+    <!-- Exercise 2 -->
+    <div class="exercise">
+        <h2>Exercise 2: Working with Tuples</h2>
+        <p>In this exercise, we perform simple arithmetic operations and store the results in a tuple. Then, we display the type of the tuple.</p>
+        <code>
+            a = 1<br>
+            b = 2.5<br>
+            tup = (a + b, a - b, a / b)<br>
+            print("output:", tup)<br>
+            print("variable type:", type(tup))
+        </code>
+        <div class="output">
+            <strong>Output:</strong>
+            <!-- Output for Exercise 2 would be displayed here -->
+        </div>
+    </div>
+
+    <!-- Exercise 3 -->
+    <div class="exercise">
+        <h2>Exercise 3: Prime Numbers Finder</h2>
+        <p>This exercise generates a list of prime numbers between 2 and 100.</p>
+        <code>
+            primelist = []<br>
+            c = 0<br>
+            for i in range(2, 101):<br>
+            &emsp;if i > 2:<br>
+            &emsp;&emsp;for j in range(2, 101):<br>
+            &emsp;&emsp;&emsp;if i == j:<br>
+            &emsp;&emsp;&emsp;&emsp;continue<br>
+            &emsp;&emsp;&emsp;elif j < i:<br>
+            &emsp;&emsp;&emsp;&emsp;if i % j == 0:<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;c = 0<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;break<br>
+            &emsp;&emsp;&emsp;&emsp;else:<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;c = 1<br>
+            &emsp;if c == 1:<br>
+            &emsp;&emsp;primelist.append(i)<br>
+            print("prime numbers:", primelist)
+        </code>
+        <div class="output">
+            <strong>Output:</strong>
+            <!-- Output for Exercise 3 would be displayed here -->
+        </div>
+    </div>
+
+    <!-- Exercise 4 -->
+    <div class="exercise">
+        <h2>Exercise 4: Prime Number Checker</h2>
+        <p>This exercise defines a function to check if a number is prime and also prints all prime numbers less than 100 using list comprehension.</p>
+        <code>
+            def isprime(n):<br>
+            &emsp;c = 0<br>
+            &emsp;if n > 2:<br>
+            &emsp;&emsp;for j in range(2, 101):<br>
+            &emsp;&emsp;&emsp;if n == j:<br>
+            &emsp;&emsp;&emsp;&emsp;continue<br>
+            &emsp;&emsp;&emsp;elif j < n:<br>
+            &emsp;&emsp;&emsp;&emsp;if n % j == 0:<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;c = 0<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;break<br>
+            &emsp;&emsp;&emsp;&emsp;else:<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;c = 1<br>
+            &emsp;if c == 1:<br>
+            &emsp;&emsp;return True<br>
+            &emsp;elif c == 0:<br>
+            &emsp;&emsp;return False<br>
+            &emsp;elif n == 1 or n == 2:<br>
+            &emsp;&emsp;return True<br><br>
+            num = int(input())<br>
+            res = isprime(num)<br>
+            if res == True:<br>
+            &emsp;print(num, "is a prime number!")<br>
+            elif res == False:<br>
+            &emsp;print(num, "is not a prime number!")<br><br>
+            primelist = [i for i in range(2, 101) if all(i % j != 0 for j in range(2, i))]<br>
+            print("Prime numbers less than 100:", primelist)
+        </code>
+        <div class="output">
+            <strong>Output:</strong>
+            <!-- Output for Exercise 4 would be displayed here -->
+        </div>
+    </div>
+
 </body>
 </html>
 
