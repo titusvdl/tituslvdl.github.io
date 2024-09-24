@@ -40,7 +40,7 @@
 
 <p>In this exercise, we will load the <code>goodreads.csv</code> file, explore the data, and rename the columns to specific names.</p>
 
-<h2>Steps:</h2>
+<h2>Code:</h2>
 
 <ul>
     <li>Load the <code>goodreads.csv</code> file into Python using Pandas.</li>
@@ -72,7 +72,7 @@ df.head(5)</code></pre>
 
 <ul><li>Subset the data by creating new dataframe only with `["rating", 'isbn', 'author_url', 'year', 'genre_urls', 'name']`</li></ul>
     
-<h2>Steps:</h2>
+<h2>Code:</h2>
     <p><pre><code>
 # 2 slicing the pandas dataframe by using the 'loc' or 'iloc' function
 # The difference between the loc and iloc functions is that the loc function selects rows using row labels (e.g. tea),
@@ -98,7 +98,7 @@ filtered_df.head(5)
 - Count the missing values in each column
 - Manage the missing values (delete or replace values or leave them as they are) and briefly explain your choice for each column</p>
 
-<h2>Steps:</h2>
+<h2>Code:</h2>
     <p><pre><code>
         # 3a.1 filtered_df has a total of 5998 + 1 rows as shown in exercise 2 
 # .count() calcultes the amount of times an 'object' apears in a list (in this case a value)
@@ -140,8 +140,9 @@ filtered_df.loc[filtered_df.rating.isnull()]
 filtered_df
     </code></pre></p>
 
+
     
-     <h1>Exercise </h1>
+     <h1>Exercise 4: </h1>
 <p></p>
 
 <h2>Steps:</h2>
@@ -149,33 +150,132 @@ filtered_df
         
     </code></pre></p>
 
-     <h1>Exercise </h1>
-<p></p>
+     <h1>Exercise 5: Saving the results</h1>
+<p>
+ - Save the cleaned dataframe as 'hw-03-cleaned.csv' in data folder</p>
+
+<h2>Code:</h2>
+    <p><pre><code>
+        # 5 saving the dataframe as csv
+# 'data/hw-03-cleaned.csv' specifies the path where the file will be saved 
+# 'index=False' prevents pandas from writing row indicies to the csv file  
+
+filtered_df.to_csv('data/hw-03-cleaned.csv', index=False)     
+    </code></pre></p>
+
+    
+     <h1>Exercise 6: Investigate the relationship between the number of reviews and the average rating for books in the dataset cleaned-goodreads.csv procided.</h1>
+<p> - Calculate the correlation coefficient. Give me a short definition of this coefficient
+  - Create a scatter plot showing the relationship between these two features.
+  - Based on the plot and the correlation, provide a brief interpretation of the relationship.
+
+Python Tools: Use pandas and numpy for correlation, and matplotlib or seaborn for the scatter plot.</p>
 
 <h2>Steps:</h2>
     <p><pre><code>
-        
+        # 6a loading the csv data set into the notebook
+import pandas as pd
+f = 'data/cleaned-goodreads.csv'
+df2 = pd.read_csv(f)
+df2.head(5)
+
+# 6a calculating the correlation coefficient between the column 'review_count' and 'rating'
+# the .corr() function in pandas is used to calculate the correlation coefficient 
+# df2['review_count'] accesses the column with the total number of reviews for each book 
+# df2['rating'] accesses the column with the average rating for each book
+# the .corr() function is aplied to the column "df2['review_count']"
+# the second column is the argument to compare the first column with .corr(df2['rating'])
+# a f-string was used to increase readability 
+
+correlation_coefficient = df2['review_count'].corr(df2['rating'])
+print(f"Correlation coefficient between the columns 'review_count' and 'rating': {correlation_coefficient}")
+
+# If the correlation coefficient is close to +1: It indicates that books with more reviews tend to have higher ratings
+# If it is close to -1: It would suggest that books with more reviews tend to have lower ratings
+# If it is near O: It means there's no significant linear relationship between the number of reviews and the rating
+
+
+# 6b create a scatter plot using seaborn sns.scatterplot(x='review_count', y='rating', data=df2)
+# customizing the scatter plot can be done by adding (color='pink', marker='*') to the previous code
+# it can be further customized by adding labels and regulating the figure size with the use of matplotlib.pyplot
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+plt.figure(figsize=(8, 6))
+sns.scatterplot(x='review_count', y='rating', data=df2, color='pink', marker='*')
+
+plt.title('Relationship Between Number of Reviews and Rating', fontsize=16)
+plt.xlabel('Number of Reviews', fontsize=14)
+plt.ylabel('Rating', fontsize=14)
+
+plt.show()
+
+#6c when examining both the correlation coefficient and the scatter plot you can see that here is no linear
+# relationship between the number of reviews a book has and its average rating
+# so, a book having more or fewer reviews doesn't consistently correlate with it being rated higher or lower
     </code></pre></p>
-     <h1>Exercise </h1>
-<p></p>
+
+    
+     <h1>Exercise 7: Calculate the following descriptive statistics for the numerical features (e.g., number of reviews, average rating, etc.):</h1>
+<p>  - Mean
+  - Median
+  - Standard Deviation
+  - Range
+  - Create a histogram or box plot for at least one of the numerical features, highlighting any skewness or outliers.
+    
+Python Tools: Use pandas for data manipulation and matplotlib or seaborn for visualization.</p>
 
 <h2>Steps:</h2>
     <p><pre><code>
-        
-    </code></pre></p>
-     <h1>Exercise </h1>
-<p></p>
+        # 7a testing the data type per column to help locate the numeric features
+df2.dtypes
 
-<h2>Steps:</h2>
-    <p><pre><code>
-        
-    </code></pre></p>
-     <h1>Exercise </h1>
-<p></p>
+# 7a a new list was created with all the columns that have numerical values in the dataframe 
+# "numerical_features = ['rating', 'review_count', 'year', 'rating_count']"
+# to create a more readable print an f-string was used once again 
+# in which "\n" is a line break
 
-<h2>Steps:</h2>
-    <p><pre><code>
-        
+numerical_features = ['rating', 'review_count', 'year', 'rating_count']
+mean_values = df2[numerical_features].mean()
+median_values = df2[numerical_features].median()
+std_values = df2[numerical_features].std()
+range_values = df2[numerical_features].max() - df[numerical_features].min()
+
+print(f"Mean values:\n{mean_values}\n")
+print(f"Median values:\n{median_values}\n")
+print(f"Standard Deviation:\n{std_values}\n")
+print(f"Range:\n{range_values}\n")
+
+# 7b created a histogram for 'rating' using "sns.histplot(df['rating'])"
+# bins=20 was added to divide the entire range of values into a series of intervals
+# a kernel density estimate was added "kde=True"
+# labels are added with the use of matplotlib.pyplot
+
+plt.figure(figsize=(10, 6))
+sns.histplot(df['rating'], bins=20, kde=True, color='pink') 
+
+plt.title('Histogram of Book Ratings')
+plt.xlabel('Rating')
+plt.ylabel('Frequency')
+plt.show()
+
+# 7b created a boxplot for 'rating' using "sns.boxplot(x=df['rating'])"
+# labels are added with the use of matplotlib.pyplot
+
+plt.figure(figsize=(10, 6))
+sns.boxplot(x=df['rating'], color='pink')
+
+plt.title('Box Plot of Book Ratings')
+plt.xlabel('Rating')
+plt.show()
+
     </code></pre></p>
+
 </body>
 </html>
+
+
+
+
+
