@@ -49,7 +49,8 @@
         <pre><code>["rating", "review_count", "isbn", "booktype", "author_url", "year", "genre_urls", "dir", "rating_count", "name"]</code></pre>
     </li>
 </ul>
-<p><code># 1a loading the csv data set into the notebook
+<p>
+     <pre><code># 1a loading the csv data set into the notebook
 import pandas as pd
 f = 'data/goodreads.csv'
 df = pd.read_csv(f)
@@ -64,7 +65,9 @@ df.tail(5)
 df.columns = ["rating", 'review_count', 'isbn', 'booktype','author_url', 'year', 'genre_urls', 'dir','rating_count', 'name']
 
 # 1c testing the dataframe to see if the new column names were added correctly 
-df.head(5)</code></p>
+df.head(5)</code></pre>
+
+</p>
 
     <a href = "5-7.html" class="game-link"></a>
 </body>
