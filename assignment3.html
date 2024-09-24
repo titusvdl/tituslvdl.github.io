@@ -68,10 +68,10 @@ df.columns = ["rating", 'review_count', 'isbn', 'booktype','author_url', 'year',
 df.head(5)</code></pre>
 </p>
 
-    <h1>Exercise 2: Subsetting the data
+    <h1>Exercise 2: Subsetting the data</h1>
 
-<li>Subset the data by creating new dataframe only with `["rating", 'isbn', 'author_url', 'year', 'genre_urls', 'name']`</li></h1>
-
+<ul><li>Subset the data by creating new dataframe only with `["rating", 'isbn', 'author_url', 'year', 'genre_urls', 'name']`</li></ul>
+    
 <h2>Steps:</h2>
     <p><pre><code>
 # 2 slicing the pandas dataframe by using the 'loc' or 'iloc' function
@@ -85,5 +85,97 @@ filtered_df
 filtered_df.head(5)
         </code></pre>
 </p>
+
+     <h1>Exercise 3: Manage Missing Data</h1>
+<p>We’ve got a number of ways in general of dealing with missing data. These involve
+
+1. Dropping off cases (or rows) in the data with any missing variables
+2. Excluding variables in the data with any missing data 
+3. Selectively choosing indicators with only a limited amount of missing data
+4. Replacing missing variables with averages, or other representative values
+5. Creating a separate model to predict missing data
+
+- Count the missing values in each column
+- Manage the missing values (delete or replace values or leave them as they are) and briefly explain your choice for each column</p>
+
+<h2>Steps:</h2>
+    <p><pre><code>
+        # 3a.1 filtered_df has a total of 5998 + 1 rows as shown in exercise 2 
+# .count() calcultes the amount of times an 'object' apears in a list (in this case a value)
+# so you can subtract the amount of times a value is shown in a row by the total number of rows to find how many rows do NOT have a value (missing values)
+5999 - filtered_df.count() 
+
+        # 3a.1 proof that there are 7 missing values in the column 'year' as shown in the outcome of the previous calculation
+filtered_df[filtered_df.year.isnull()]
+
+        # 3a.2 can also be done by using .isnull() (to show how many missing values there are) and .sum() to calculate the total per column
+filtered_df.isnull().sum()
+
+        #3a.2 which can be writen in a more extensive way as 
+missing_values = filtered_df.isnull().sum()
+print(missing_values)
+
+        # 3b we checked the data and there are two rows that all miss data in the columns 'rating', 'author_url', 'name'
+# we decided to drop those two rows as there are only 2 of them out of 5999 
+# but if wanted you could calculate a mean for the numeric data, by doing:  
+# "filtered_df['rating'] = filtered_df['rating'].fillna(filtered_df['rating'].mean())"
+
+filtered_df = filtered_df.dropna(subset=['rating'])
+
+# for the column 'isbn' there are 477 missing values, but can be left as is:
+# we don't want to alter the data and mess up the curent integers in the column, if needed for further research
+
+# for the column 'year' there are 7 missing values, but can be left as is:
+# there are only 7 rows out of 5997, so the missing values won't be that significant, 
+# but the rest of the values in that row might be, hence we leave them in 
+
+# for the column 'genre_url' there are 62 missing values, but can be left as is:
+# as they make up 1% of the total data set, so the missing values won't be that significant
+# but the rest of the values in that row might be, hence we leave them in 
+
+        # 3b test to see if there are any rows left without value for the column 'rating'
+filtered_df.loc[filtered_df.rating.isnull()]
+
+        # 3b test to see only two rows were deleted out of the filtered_df dataframe
+filtered_df
+    </code></pre></p>
+
+    
+     <h1>Exercise </h1>
+<p></p>
+
+<h2>Steps:</h2>
+    <p><pre><code>
+        
+    </code></pre></p>
+
+     <h1>Exercise </h1>
+<p></p>
+
+<h2>Steps:</h2>
+    <p><pre><code>
+        
+    </code></pre></p>
+     <h1>Exercise </h1>
+<p></p>
+
+<h2>Steps:</h2>
+    <p><pre><code>
+        
+    </code></pre></p>
+     <h1>Exercise </h1>
+<p></p>
+
+<h2>Steps:</h2>
+    <p><pre><code>
+        
+    </code></pre></p>
+     <h1>Exercise </h1>
+<p></p>
+
+<h2>Steps:</h2>
+    <p><pre><code>
+        
+    </code></pre></p>
 </body>
 </html>
