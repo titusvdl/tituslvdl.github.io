@@ -142,12 +142,93 @@ filtered_df
 
 
     
-     <h1>Exercise 4: </h1>
-<p></p>
+     <h1>Exercise 4: Shape the data</h1>
+<p> - Parse the `author_url` to create new column named `author`
+ - Sort the data by putting higher rates go first. If there are overlapping rates, try to put earlier years go first.
+ - **(Stretch Goal)** Examine how many books were published at each year and find lowest, highest rate of each year. </p>
 
 <h2>Code:</h2>
     <p><pre><code>
-        
+# 4a checking data tyoe of all columns
+filtered_df.dtypes
+
+# 4a one of the author_url strings 
+author_name = filtered_df.author_url[1]
+author_name
+
+# 4a split('/') is used to split the string (the author_url) at every '/' 
+# (negative) numbers can be used in selection, int his case you are interested in the last part of the url hence the [-1]
+# This will start counting forwards from the end of the values. 
+# or you can write it as the [5], if you start counting from the front
+
+author_name.split('/')[-1]
+# or 
+author_name.split('/')[5]
+
+# 4a .split('.')[1:][0] is added to further split the author_url
+# where .split('.') is used to seperate the name from the number 
+# and [1,0] was used to slice it and simultaneously remove the first element 
+# and [0] was used to extract the first (and left over) element of that newest split
+
+# BUT to make the code more efficient you can also write just [1], 
+# as it will immediatly grab just the authors name by telling the program to grab at index 1,
+# which in coloqueal language means the second one
+author_name.split('/')[-1].split('.')[1]
+
+# 4a use def to creat a function (a block of code which only runs when it is called), its named get_author and (url) is the argument 
+# an argument is the value that is sent to the function when it is called
+# inside the function the url is split as explained in the previous step
+# the function returns to the extrated name
+# filtered_df['author'] = filtered_df.author_url.map(get_author) applies the function to each value in the author_url column 
+# it also maps the result of the fuunction to a new coloumn named author 
+
+def get_author(url):
+
+    name = url.split('/')[-1].split('.')[1:][0]
+     
+    return name
+
+filtered_df['author'] = filtered_df.author_url.map(get_author)
+filtered_df
+
+# 4b question sort the data by putting higher rates go first. If there are overlapping rates, try to put earlier years go first.
+# sort_values(by='rating') was used to sort the dataframe based on the column rating and (ascending=False) was added to start with the highest values
+
+filtered_df.sort_values(by='rating', ascending=False)
+
+# 4b when trying to first sort based on rating and then based on year the code changes
+# first of all the () are replaced with [], as the code is now going trough multiple columns and passing a sequence of values 
+# [] is used to pass a list, when sorting through multiple columns, a list can hold multiple values 
+# so now there are two lists with column names "['rating', 'year']" and "[False, False]"
+# "inplace=True" makes the changes directly into the dataframe without needing to reassign it 
+
+filtered_df.sort_values(by=['rating', 'year'], ascending=[False, False], inplace=True)
+filtered_df
+
+# 4c **(Stretch Goal)** Examine how many books were published at each year and find lowest, highest rate of each year. 
+# filtered_df.groupby('year') was used to group the dataframe by the 'year' column
+# `agg()`, which lets you run a bunch of different functions on your DataFrame simultaneously
+# book_count=('rating', 'size'), 'size' is used to calculate how many books exist per year (rows in each group)  
+# lowest_rating=('rating', 'min'), 'min' is used to find the lowest number in the rating column for each year 
+# highest_rating=('rating', 'max') 'max' is used to find the highest number in the rating column for each year
+# ).reset_index() this resets the index of the dataframe to amke year a regular column instead of the index  
+
+# note to myself function calls use parentheses (), tuples also us parentheses ()
+# lists and dictionaries use square brackets [] and curly braces {}
+# inside the agg() function dictionaries are defined as tuples 
+# in this case 1 the column e.g. 'rating' and 2 the function e.g. 'size'
+# creating a column-function pair written as ('rating', 'size')
+
+
+books_yearly = filtered_df.groupby('year').agg( 
+    book_count=('rating', 'size'), 
+    lowest_rating=('rating', 'min'),  
+    highest_rating=('rating', 'max')  
+).reset_index()
+
+books_yearly
+
+# the outcome of this examination shows that the data should have been cleaned differentlty, there are now negative years left in the dataframe
     </code></pre></p>
 
      <h1>Exercise 5: Saving the results</h1>
