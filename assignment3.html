@@ -49,32 +49,22 @@
         <pre><code>["rating", "review_count", "isbn", "booktype", "author_url", "year", "genre_urls", "dir", "rating_count", "name"]</code></pre>
     </li>
 </ul>
-
-<h2>Python Code:</h2>
-
-<pre><code># Import necessary libraries
+<p># 1a loading the csv data set into the notebook
 import pandas as pd
+f = 'data/goodreads.csv'
+df = pd.read_csv(f)
 
-# Load the goodreads.csv file
-file_path = 'goodreads.csv'  # Ensure correct file path is used
-data = pd.read_csv(file_path)
+# 1b looking at the frist 5 rows of the dataframe
+df.head(5)
 
-# Display the first 5 rows of the dataset
-print("First 5 rows:")
-print(data.head())
+# 1b looking at the last 5 rows of the dataframe
+df.tail(5)
 
-# Display the last 5 rows of the dataset
-print("\nLast 5 rows:")
-print(data.tail())
+# 1c adding column names to the 'goodreads.csv' dataframe
+df.columns = ["rating", 'review_count', 'isbn', 'booktype','author_url', 'year', 'genre_urls', 'dir','rating_count', 'name']
 
-# Rename the columns
-new_column_names = ["rating", "review_count", "isbn", "booktype", "author_url", "year", 
-                    "genre_urls", "dir", "rating_count", "name"]
-data.columns = new_column_names
-
-# Display the renamed columns
-print("\nRenamed columns:")
-print(data.columns)</code></pre>
+# 1c testing the dataframe to see if the new column names were added correctly 
+df.head(5)</p>
 
 </body>
 </html>
