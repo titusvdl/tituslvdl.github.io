@@ -66,9 +66,24 @@ df.columns = ["rating", 'review_count', 'isbn', 'booktype','author_url', 'year',
 
 # 1c testing the dataframe to see if the new column names were added correctly 
 df.head(5)</code></pre>
-
 </p>
 
-    <a href = "5-7.html" class="game-link"></a>
+    <h1>Exercise 2: Subsetting the data
+
+<li>Subset the data by creating new dataframe only with `["rating", 'isbn', 'author_url', 'year', 'genre_urls', 'name']`</li></h1>
+
+<h2>Steps:</h2>
+    <p><pre><code>
+# 2 slicing the pandas dataframe by using the 'loc' or 'iloc' function
+# The difference between the loc and iloc functions is that the loc function selects rows using row labels (e.g. tea),
+# whereas the iloc function selects rows using their integer positions (staring from 0 and going up by one for each row)
+# loc uses the information in the datasets's indices to do its work 
+filtered_df = df.loc[0:, ['rating', 'isbn', 'author_url', 'year', 'genre_urls', 'name']]
+filtered_df
+
+        # 2 testing the new dataframe to see whether the right columns were transfered out of the original df
+filtered_df.head(5)
+        </code></pre>
+</p>
 </body>
 </html>
