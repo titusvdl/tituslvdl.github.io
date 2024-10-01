@@ -38,7 +38,8 @@
 
     
 <body>
-    <p># loading the libraries into the notebook
+    <p><pre><code>
+# loading the libraries into the notebook
 import seaborn as sns
 import pandas as pd
 from pysal.lib import weights
@@ -46,13 +47,13 @@ from pysal.explore import esda
 import geopandas as gpd
 import numpy as np
 import contextily as ctx
-import matplotlib.pyplot as plt</p>
+import matplotlib.pyplot as plt</code></pre></p>
 
         <h1>Question 1: Use PySAL to create a contiguity-based weight matrix (W) for a given spatial dataset of polygons. Write a function create_contiguity_weights that:</h1>
 <p>    
-    Reads in a shapefile of polygons.
-    Constructs a Queen contiguity-based spatial weights matrix.
-    Returns the weight matrix.
+    <li>Reads in a shapefile of polygons.</li>
+    <li>Constructs a Queen contiguity-based spatial weights matrix.</li>
+    <li>Returns the weight matrix.</li>
 </p> 
 <h2>Code:</h2>
     <p><pre><code>
