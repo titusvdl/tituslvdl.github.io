@@ -38,20 +38,84 @@
 
     
 <body>
+    <p># loading the libraries into the notebook
+import seaborn as sns
+import pandas as pd
+from pysal.lib import weights
+from pysal.explore import esda
+import geopandas as gpd
+import numpy as np
+import contextily as ctx
+import matplotlib.pyplot as plt</p>
 
-        <h1>Question 1</h1>
-<p>
+        <h1>Question 1: Use PySAL to create a contiguity-based weight matrix (W) for a given spatial dataset of polygons. Write a function create_contiguity_weights that:</h1>
+<p>    
+    Reads in a shapefile of polygons.
+    Constructs a Queen contiguity-based spatial weights matrix.
+    Returns the weight matrix.
 </p> 
 <h2>Code:</h2>
     <p><pre><code>
+        # creating a queen contiguity based spatial weight matrix to test whether neigbourhoods are adjacent
+# with the queen contiguity based spatial weight matrix iyou can test wether these observations (neighbourhoods) share a vortex
+# vortex = (a single point)
+w_queen = weights.Queen.from_dataframe(gdf, ids='gebied_naam')
+w_queen
+
+# opening the geodataframe to find the name (row) of one of the districts (gebieds_naam, column)
+gdf
+
+# testing wether the queen contiguity based spatial weight matrix worked for on of the districts
+w_queen['Diamantbuurt']
+
+# writing a function "reate_contiguity_weigh" that includes all the previous steps 
+# to succesfully create create a contiguity-based weight matrix (W) for a given spatial dataset of polygons
+# that aslo returns the weight matrix ("return" is something you can only do with a function)
+def create_contiguity_weights(geodataframe):
+    gdf = gpd.read_file(geodataframe)
+    w_queen = weights.Queen.from_dataframe(gdf, ids='gebied_naam')
+    return w_queen
     </code></pre></p>
 
 
-    <h1>Question 2</h1>
+    <h1>Question 2: Write a function calculate_morans_i that:</h1>
 <p>
+    Takes a spatial weight matrix W and an attribute array y.
+    Calculates Moran’s I for the given attribute array.
+    Returns the Moran’s I value and its p-value.
 </p> 
 <h2>Code:</h2>
     <p><pre><code>
+        from esda.moran import Moran
+#First we must define the geodatabase, it was defined earlier in the previous function but this function
+#cannot look inside the other so we must define it again
+gdf = gpd.read_file(geodataframe)
+
+#We create a function called calculate_morans_i which takes the contiguity matrix
+#from exercise 1 and calculates morans i with it
+def calculate_morans_i(w_queen):
+    
+    #First the function standardizes the rows
+    w_queen.transform = 'r'
+
+    # Then it defines Y as a row from the dataframe
+    Y = gdf['opp_gebied_ha'].values
+
+    # We then use the moran function to calculate morans I with 
+    #the information from Y and the weighted matirx W
+    moran = Moran(Y, w_queen)
+   
+    #The function then retunr Morans I
+    return moran
+
+#We first define moran
+moran = calculate_morans_i(w_queen)
+
+#Which then allows the print functions to actually print Morans I and the P value
+print(f"Moran's I: {moran.I}")
+print(f"P-value: {moran.p_sim}")
+
+#Made by Marco
     </code></pre></p>
 
 
@@ -77,6 +141,15 @@
 <h2>Code:</h2>
     <p><pre><code>
     </code></pre></p>
-    
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
