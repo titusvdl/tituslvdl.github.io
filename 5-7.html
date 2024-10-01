@@ -41,7 +41,7 @@ def create_contiguity_weights(geodataframe):
 
 
 
-Question 2
+Question 2 #Made by Marco
 Write a function calculate_morans_i that:
 
     Takes a spatial weight matrix W and an attribute array y.
@@ -78,10 +78,10 @@ moran = calculate_morans_i(w_queen)
 print(f"Moran's I: {moran.I}")
 print(f"P-value: {moran.p_sim}")
 
-#Made by Marco
 
 
-Question 3
+
+Question 3 #Made by Titus
 Create a function standardize_weights that:
 
     Takes a spatial weight matrix W.
@@ -108,11 +108,11 @@ def standardize_weights(w_queen):
 w_standardized = standardize_weights(w_queen)
 print(w_standardized['Diamantbuurt'])
 
-#Made by Titus
 
 
 
-Question 4
+
+Question 4 #Made by Alua
 Write a function create_distance_weights that:
 
     Takes a set of point coordinates and a threshold distance.
@@ -120,8 +120,51 @@ Write a function create_distance_weights that:
     Returns the weight matrix.
 
 
+import geopandas as gpd
+import numpy as np
+from libpysal.weights import DistanceBand
 
-Question 5
+#creating a distance-based spatial weight matrix from a GeoPackage file
+def create_distance_weights(gpkg_file, threshold):
+
+    #reading the GeoPackage file using geopandas, geopandas will read the file and load it into a GeoDataFrame
+    gdf = gpd.read_file(gpkg_file)
+    # geopandas will read the file and load it into a GeoDataFrame
+    
+    # Step 2: Check if the geometries are points or polygons
+    if gdf.geometry.iloc[0].geom_type == 'Point':
+        #if the geometries are points, use them directly
+        points = np.array([(geom.x, geom.y) for geom in gdf.geometry])
+    elif gdf.geometry.iloc[0].geom_type in ['Polygon', 'MultiPolygon']:
+        #if the geometries are polygons, use their centroids as points
+        points = np.array([(geom.centroid.x, geom.centroid.y) for geom in gdf.geometry])
+    else:
+        raise ValueError("The GeoPackage file must contain point or polygon geometries.")
+    #ensuring the geometries are either points or polygons
+    #if polygons, use the centroid of the polygon as a point
+
+     #creating a distance-based spatial weights matrix, DistanceBand considers all points within the threshold distance as neighbors
+    W = DistanceBand(points, threshold=threshold, binary=True)
+    
+    return W
+    #returning the spatial weights matrix
+
+#file path and threshold definition (the threshold was defined based on an assumption of units used in the gpkg file)
+gpkg_file = geodataframe
+threshold_distance = 1000
+
+#creating weight matrix
+W_matrix2 = W.full()[0]
+
+#printing neighbors for each point
+print("Weight matrix")
+print(W_matrix2)
+
+
+
+
+
+Question 5 #Made by Lalith
 Using PySAL, write a function plot_moran that:
 
     Takes a spatial weights matrix W and an attribute array y.
@@ -129,6 +172,20 @@ Using PySAL, write a function plot_moran that:
     Saves the Moran plot as an image file.
 
 
+from libpysal.weights.spatial_lag import lag_spatial
+from splot.esda import moran_scatterplot
+import matplotlib.pyplot as plt
+from libpysal.weights import Queen
+import geopandas as gpd
+
+gdf = gpd.read_file(geodataframe)
+w_queen = weights.Queen.from_dataframe(gdf, ids='opp_gebied_ha')
+
+y = gdf['opp_gebied_ha'] #selecting one particular column and assigning that to y
+moran = Moran(y, w_queen) #calculates Moran’s I based on the values of the attribute (y) and the spatial weights matrix (w)
+sp_lag = lag_spatial(w_queen, y) #calculates the spatial lag
+fig, ax = moran_scatterplot(moran) #creates the scatterplot
+plt.show() #displays plot
 
 
 
