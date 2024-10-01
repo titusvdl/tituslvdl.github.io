@@ -154,6 +154,7 @@ gpkg_file = geodataframe
 threshold_distance = 1000
 
 #creating weight matrix
+W = create_distance_weights(gpkg_file, threshold_distance)
 W_matrix2 = W.full()[0]
 
 #printing neighbors for each point
