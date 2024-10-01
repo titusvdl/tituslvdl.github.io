@@ -81,7 +81,51 @@ print(f"P-value: {moran.p_sim}")
 #Made by Marco
 
 
+Question 3
+Create a function standardize_weights that:
 
+    Takes a spatial weight matrix W.
+    Standardizes it so that the weights of each row sum to one.
+    Returns the standardized weight matrix.
+
+
+# create a function "standardize_weights" with the spatial weight matrix(w_queen) as a parameter 
+# parameters in functions act as place holders, it specifies what kind of input the function expects
+# an argument is the actual value you pass into the function when you call it, substituting the parameter
+# in this case w_queen is the variable that holds the spatial weight matrix
+# the following function standardizes this w_quuen matrix by using .transform 
+# in this case row-based transformation is needed, to make sure every row of the matrix sums up to one
+# 'R' stands for row-standardization
+from libpysal import weights
+
+def standardize_weights(w_queen):
+    w_queen.transform = 'R'
+    return w_queen
+
+
+# w_queen is the spatial weights matrix
+# you can check the standardized values by printing .... 
+w_standardized = standardize_weights(w_queen)
+print(w_standardized['Diamantbuurt'])
+
+
+
+
+Question 4
+Write a function create_distance_weights that:
+
+    Takes a set of point coordinates and a threshold distance.
+    Constructs a distance-based spatial weight matrix where all points within the threshold distance are assigned a weight.
+    Returns the weight matrix.
+
+
+
+Question 5
+Using PySAL, write a function plot_moran that:
+
+    Takes a spatial weights matrix W and an attribute array y.
+    Creates and displays a Moran plot for the attribute.
+    Saves the Moran plot as an image file.
 
 
 
