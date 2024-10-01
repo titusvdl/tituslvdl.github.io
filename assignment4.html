@@ -49,8 +49,9 @@ import numpy as np
 import contextily as ctx
 import matplotlib.pyplot as plt</code></pre></p>
 
-        <h1>Question 1: Use PySAL to create a contiguity-based weight matrix (W) for a given spatial dataset of polygons. Write a function create_contiguity_weights that:</h1>
-<p>    
+        <h1>Question 1:</h1>
+<p> 
+    Use PySAL to create a contiguity-based weight matrix (W) for a given spatial dataset of polygons. Write a function create_contiguity_weights that:
     <li>Reads in a shapefile of polygons.</li>
     <li>Constructs a Queen contiguity-based spatial weights matrix.</li>
     <li>Returns the weight matrix.</li>
@@ -79,11 +80,12 @@ def create_contiguity_weights(geodataframe):
     </code></pre></p>
 
 
-    <h1>Question 2: Write a function calculate_morans_i that:</h1>
+    <h1>Question 2:</h1>
 <p>
-    Takes a spatial weight matrix W and an attribute array y.
-    Calculates Moran’s I for the given attribute array.
-    Returns the Moran’s I value and its p-value.
+    Write a function calculate_morans_i that:
+    <li>Takes a spatial weight matrix W and an attribute array y.</li>
+    <li>Calculates Moran’s I for the given attribute array.</li>
+    <li>Returns the Moran’s I value and its p-value.</li>
 </p> 
 <h2>Code:</h2>
     <p><pre><code>
@@ -120,11 +122,12 @@ print(f"P-value: {moran.p_sim}")
     </code></pre></p>
 
 
-        <h1>Question 3: Create a function standardize_weights that:</h1>
+        <h1>Question 3:</h1>
 <p>
-    Takes a spatial weight matrix W.
-    Standardizes it so that the weights of each row sum to one.
-    Returns the standardized weight matrix.
+    Create a function standardize_weights that:
+    <li>Takes a spatial weight matrix W.</li>
+    <li>Standardizes it so that the weights of each row sum to one.</li>
+    <li>Returns the standardized weight matrix.</li>
 </p> 
 <h2>Code:</h2>
     <p><pre><code>
@@ -151,23 +154,24 @@ print(w_standardized['Diamantbuurt'])
     </code></pre></p>
 
 
-        <h1>Question 4: Write a function create_distance_weights that:</h1>
+        <h1>Question 4:</h1>
 <p>
-    Takes a set of point coordinates and a threshold distance.
-    Constructs a distance-based spatial weight matrix where all points within the threshold distance are assigned a weight.
-    Returns the weight matrix.
+    Write a function create_distance_weights that:
+    <li>Takes a set of point coordinates and a threshold distance.</li>
+    <li>Constructs a distance-based spatial weight matrix where all points within the threshold distance are assigned a weight.</li>
+    <li>Returns the weight matrix.</li>
 </p> 
 <h2>Code:</h2>
     <p><pre><code>
     </code></pre></p>
 
 
-        <h1>Question 5: Using PySAL, write a function plot_moran that:
-</h1>
+        <h1>Question 5:</h1>
 <p>
-    Takes a spatial weights matrix W and an attribute array y.
-    Creates and displays a Moran plot for the attribute.
-    Saves the Moran plot as an image file.
+    Using PySAL, write a function plot_moran that:
+    <li>Takes a spatial weights matrix W and an attribute array y.</li>
+    <li>Creates and displays a Moran plot for the attribute.</li>
+    <li>Saves the Moran plot as an image file.</li>
 </p> 
 <h2>Code:</h2>
     <p><pre><code>
