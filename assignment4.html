@@ -47,6 +47,8 @@
 </p> 
 <h2>Code:</h2>
        <p><pre><code>
+#Made by the whole group
+           
 # loading the libraries into the notebook
 import seaborn as sns
 import pandas as pd
@@ -77,8 +79,6 @@ def create_contiguity_weights(geodataframe):
     gdf = gpd.read_file(geodataframe)
     w_queen = weights.Queen.from_dataframe(gdf, ids='gebied_naam')
     return w_queen
-        
-    #Made by the whole group
     </code></pre></p>
 
 
@@ -91,7 +91,9 @@ def create_contiguity_weights(geodataframe):
 </p> 
 <h2>Code:</h2>
     <p><pre><code>
-        from esda.moran import Moran
+#Made by Marco
+        
+from esda.moran import Moran
 #First we must define the geodatabase, it was defined earlier in the previous function but this function
 #cannot look inside the other so we must define it again
 gdf = gpd.read_file(geodataframe)
@@ -119,8 +121,6 @@ moran = calculate_morans_i(w_queen)
 #Which then allows the print functions to actually print Morans I and the P value
 print(f"Moran's I: {moran.I}")
 print(f"P-value: {moran.p_sim}")
-
-#Made by Marco
     </code></pre></p>
 
 
@@ -133,7 +133,9 @@ print(f"P-value: {moran.p_sim}")
 </p> 
 <h2>Code:</h2>
     <p><pre><code>
-        # create a function "standardize_weights" with the spatial weight matrix(w_queen) as a parameter 
+#Made by Titus
+        
+# create a function "standardize_weights" with the spatial weight matrix(w_queen) as a parameter 
 # parameters in functions act as place holders, it specifies what kind of input the function expects
 # an argument is the actual value you pass into the function when you call it, substituting the parameter
 # in this case w_queen is the variable that holds the spatial weight matrix
@@ -151,8 +153,6 @@ def standardize_weights(w_queen):
 # you can check the standardized values by printing .... 
 w_standardized = standardize_weights(w_queen)
 print(w_standardized['Diamantbuurt'])
-
-#Made by Titus
     </code></pre></p>
 
 
